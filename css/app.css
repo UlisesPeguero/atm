@@ -1,1 +1,42 @@
-/* CSS */
+body {
+    background-color: lightslategray;
+}
+
+.myContainer .header {
+    padding: 5px;    
+}
+
+.header .text {
+    vertical-align: bottom;
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon.home {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=home_filled&fill=white');
+}
+
+.icon.login {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=login&fill=white');
+}
+
+/* Hide number input arrows */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* *********************** */
