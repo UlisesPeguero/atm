@@ -17,12 +17,36 @@ body {
     vertical-align: middle;
 }
 
+.btn .icon {
+    vertical-align: middle;
+}
+
 .icon.home {
-    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=home_filled&fill=white');
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=home_filled&fill=whitesmoke');
 }
 
 .icon.login {
-    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=login&fill=white');
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=login&fill=whitesmoke');
+}
+
+.icon.newAccount {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=account_circle&fill=whitesmoke');
+}
+
+.icon.cancel {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=do_not_disturb&fill=whitesmoke');
+}
+
+.icon.save {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=save&fill=whitesmoke');
+}
+
+.icon.balance {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=account_balance_wallet&fill=whitesmoke');
+}
+
+.icon.check {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=check&fill=whitesmoke');
 }
 
 /* Hide number input arrows */

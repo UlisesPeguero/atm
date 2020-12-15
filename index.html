@@ -18,15 +18,18 @@
         <h1 class="w-100 bg-light text-center shadow-sm py-2">ATM</h1>
     </header>
     <main class="container mt-3 d-flex justify-content-center align-items-center">
-        <div class="myContainer login shadow-lg">
+        <!-- Login container -->
+        <div class="myContainer login shadow-lg rounded-top">
             <div class="header w-100 bg-dark text-light">
                 <i class="icon home" alt="Home icon"></i>
                 <span class="text">Home</span>
             </div>
-            <form class="bg-light p-3" onsubmit="return false;">
-                <h4 class="text-center">PIN</h4>                    
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->
+            <form id="loginForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <!-- Login section -->
+                <h4 class="text-center">PIN</h4>                                    
                 <div class="input-group mb-1">
-                    <input id="loginPin" class="form-control text-center" type="number">
+                    <input id="loginPin" class="form-control text-center" type="number" minlength="4" maxlength="8" required>
                     <div class="invalid-feedback">
                         Please enter a valid number betweeen 4 and 8 digits.
                     </div>
@@ -36,7 +39,168 @@
                     <i class="icon login"></i>
                 </button>                                  
                 <hr>
+                <!-- New account button section -->
                 <button class="btn btn-info btn-block">New account</button>
+            </form>
+        </div>
+        <!-- Account menu container -->
+        <div class="myContainer accountMenu shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon newAccount" alt="Account menu icon"></i>
+                <span class="text">Account menu</span>
+            </div>
+            <div class="bg-light p-3 rounded-bottom">            
+                <button class="btn btn-secondary btn-block">
+                    Change PIN                    
+                </button>                                  
+                <button class="btn btn-secondary btn-block">
+                    Balance                    
+                </button>                                  
+                <button class="btn btn-secondary btn-block">
+                    Deposit                    
+                </button>                                  
+                <button class="btn btn-secondary btn-block">
+                    Withdraw
+                </button>                                  
+                <hr>
+                <!-- Back to home -->
+                <button class="btn btn-info btn-block">
+                    Back to Home
+                    <i class="icon home"></i>
+                </button>            
+            </div>
+        </div>
+        <!-- New account container -->
+        <div class="myContainer newAccount shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon newAccount" alt="New account icon"></i>
+                <span class="text">New account</span>
+            </div>
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->            
+            <form id="newAccountForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <Label for="pin" >PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="pin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
+                    <div class="invalid-feedback">
+                        Please enter a valid number betweeen 4 and 8 digits.
+                    </div>
+                </div> 
+                <Label for="name" >Name</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="name" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Please enter a name.
+                    </div>
+                </div> 
+                <Label for="balance" >Initial balance</label>                                    
+                <div class="input-group mb-1 mt-n1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input id="balance" class="form-control text-right" type="number" placeholder="0.00">
+                    <div class="invalid-feedback">
+                        Please enter a valid number.
+                    </div>
+                </div> 
+                <hr>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button class="btn btn-danger btn-block" title="Cancel changes">                    
+                            <i class="icon cancel"></i>
+                        </button>                                                 
+                    </div>
+                    <div class="col-9 ml-n1">
+                        <button class="btn btn-info btn-block" title="Save changes">
+                            Save
+                            <i class="icon save"></i>
+                        </button>                                                 
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Balance/Withdraw/Deposit  container -->
+        <div class="myContainer balance shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon balance" alt="Balance icon"></i>
+                <span id="balanceTitle" class="text">
+                    <!-- Here goes the name of the action title -->
+                    Balance
+                </span>
+            </div>
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->            
+            <form id="newAccountForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <Label for="balance">
+                    Ammount
+                </label>                                    
+                <div class="input-group mb-1 mt-n1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input id="balance" class="form-control text-right" type="number" placeholder="0.00">
+                    <div class="invalid-feedback">
+                        Please enter a valid number.
+                    </div>
+                </div> 
+                <hr>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button class="btn btn-danger btn-block" title="Cancel changes">                    
+                            <i class="icon cancel"></i>
+                        </button>                                                 
+                    </div>
+                    <div class="col-9 ml-n1">
+                        <button class="btn btn-info btn-block" title="Save changes">
+                            Confirm
+                            <i class="icon check"></i>
+                        </button>                                                 
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Change pin container -->
+        <div class="myContainer login shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon account" alt="Change PIN icon"></i>
+                <span class="text">Change PIN</span>
+            </div>
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->
+            <form id="loginForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <Label for="pin" >PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="pin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
+                    <div class="invalid-feedback">
+                        Please enter a valid number betweeen 4 and 8 digits.
+                    </div>
+                </div>                 
+                <hr>
+                <Label for="pin" >New PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="newPin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
+                    <div class="invalid-feedback">
+                        Please enter a valid number betweeen 4 and 8 digits.
+                    </div>
+                </div> 
+                <Label for="pin" >Confirm new PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="comfirmNewPin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
+                    <div class="invalid-feedback">
+                        Please enter a valid number betweeen 4 and 8 digits.
+                    </div>
+                </div> 
+                <hr>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button class="btn btn-danger btn-block" title="Cancel changes">                    
+                            <i class="icon cancel"></i>
+                        </button>                                                 
+                    </div>
+                    <div class="col-9 ml-n1">
+                        <button class="btn btn-info btn-block" title="Save changes">
+                            Confirm
+                            <i class="icon check"></i>
+                        </button>                                                 
+                    </div>
+                </div>
             </form>
         </div>
     </main>    
