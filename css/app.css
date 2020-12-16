@@ -11,6 +11,7 @@ body {
 
 .myContainer .header {
     padding: 5px;    
+    min-width: 250px;
 }
 
 .header .text {

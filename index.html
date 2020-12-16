@@ -11,7 +11,7 @@
         crossorigin="anonymous">
     <!-- CSS Custom -->
     <link rel="stylesheet"
-        href="css/app.css">
+        href="./css/app.css">
 </head>
 <body>
     <!-- <header>
@@ -19,7 +19,7 @@
     </header> -->
     <main class="h-100 d-flex justify-content-center align-items-center">
         <!-- Login container -->
-        <div id="login" class="myContainer login shadow-lg">
+        <div id="loginView" class="myContainer login shadow-lg">
             <div class="header w-100 bg-dark text-light rounded-top">
                 <i class="icon home" alt="Home icon"></i>
                 <span class="text">ATM</span>
@@ -44,7 +44,7 @@
             </form>
         </div>
         <!-- Account menu container -->
-        <div id="account" class="myContainer account shadow-lg" style="display: none">
+        <div id="accountView" class="myContainer account shadow-lg" style="display: none">
             <div class="header w-100 bg-dark text-light rounded-top">
                 <i class="icon account" alt="Account icon"></i>
                 <span class="text">Account menu</span>
@@ -71,7 +71,7 @@
             </div>
         </div>
         <!-- New account container -->
-        <div id="newAccount" class="myContainer newAccount shadow-lg" style="display: none">
+        <div id="newAccountView" class="myContainer newAccount shadow-lg" style="display: none">
             <div class="header w-100 bg-dark text-light rounded-top">
                 <i class="icon account" alt="Account icon"></i>
                 <span class="text">New account</span>
@@ -105,12 +105,12 @@
                 <hr>
                 <div class="form-row">
                     <div class="col-3">
-                        <button class="btn btn-danger btn-block" title="Cancel changes">                    
+                        <button class="btn btn-danger btn-block cancel" title="Cancel changes">                    
                             <i class="icon cancel"></i>
                         </button>                                                 
                     </div>
                     <div class="col-9 ml-n1">
-                        <button class="btn btn-info btn-block" title="Save changes">
+                        <button class="btn btn-info btn-block accept" title="Save changes">
                             Save
                             <i class="icon save"></i>
                         </button>                                                 
@@ -119,16 +119,16 @@
             </form>
         </div>
         <!-- Balance/Withdraw/Deposit  container -->
-        <div id="balance" class="myContainer balance shadow-lg" style="display: none">
+        <div id="balanceView" class="myContainer balance shadow-lg" style="display: none">
             <div class="header w-100 bg-dark text-light rounded-top">
                 <i class="icon balance" alt="Balance icon"></i>
-                <span id="balanceTitle" class="text">
+                <span id="title" class="text">
                     <!-- Here goes the name of the action title -->
                     Balance
                 </span>
             </div>
             <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->            
-            <form id="newAccountForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+            <form class="bg-light p-3 rounded-bottom" onsubmit="return false;">
                 <Label for="balance">
                     Ammount
                 </label>                                    
@@ -144,12 +144,12 @@
                 <hr>
                 <div class="form-row">
                     <div class="col-3">
-                        <button class="btn btn-danger btn-block" title="Cancel changes">                    
+                        <button class="btn btn-danger btn-block cancel" title="Cancel changes">                    
                             <i class="icon cancel"></i>
                         </button>                                                 
                     </div>
                     <div class="col-9 ml-n1">
-                        <button class="btn btn-info btn-block" title="Save changes">
+                        <button class="btn btn-info btn-block accept" title="Save changes">
                             Confirm
                             <i class="icon check"></i>
                         </button>                                                 
@@ -158,13 +158,13 @@
             </form>
         </div>
         <!-- Change pin container -->
-        <div id="changePin" class="myContainer changePin shadow-lg" style="display: none">
+        <div id="changePinView" class="myContainer changePin shadow-lg" style="display: none">
             <div class="header w-100 bg-dark text-light rounded-top">
                 <i class="icon account" alt="Change PIN icon"></i>
                 <span class="text">Change PIN</span>
             </div>
             <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->
-            <form id="loginForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+            <form class="bg-light p-3 rounded-bottom" onsubmit="return false;">
                 <Label for="pin" >PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
                     <input id="pin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
@@ -190,12 +190,12 @@
                 <hr>
                 <div class="form-row">
                     <div class="col-3">
-                        <button class="btn btn-danger btn-block" title="Cancel changes">                    
+                        <button class="btn btn-danger btn-block cancel" title="Cancel changes">                    
                             <i class="icon cancel"></i>
                         </button>                                                 
                     </div>
                     <div class="col-9 ml-n1">
-                        <button class="btn btn-info btn-block" title="Save changes">
+                        <button class="btn btn-info btn-block accept" title="Save changes">
                             Confirm
                             <i class="icon check"></i>
                         </button>                                                 
@@ -204,15 +204,22 @@
             </form>
         </div>
     </main>    
+    <!-- template for alerts -->
+    <template id="alertTemplate">
+        <div id="message" class="alert" role="alert">
+            <!-- alert message -->
+        </div>
+    </template>
     <!-- JS Custom  -->
-    <script src="js/account.js"></script>
-    <script src="js/atm.js"></script>
+    <script src="./js/viewContainer.js"></script>
+    <script src="./js/account.js"></script>
+    <script src="./js/atm.js"></script>
     <script>
         /* Start application once the DOM has been loaded completely to avoid undefined elements */
-        window.addEventListener('DOMContentLoaded', () => {
+        //window.addEventListener('DOMContentLoaded', () => {
             // initializes an instance of Atm and prepares UI
-            new Atm();
-        });
+            let atm=    new Atm();
+        //});
     </script>
 </body>
 </html>
