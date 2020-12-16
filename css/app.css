@@ -1,5 +1,12 @@
+/* SVG Graphics from https://svgbox.net */
+
+html {
+    height: 100%;
+}
+
 body {
-    background-color: lightslategray;
+    height: 100%;
+    background:  url("https://s.svgbox.net/heropatterns.svg?ic=graph-paper&fill=rgba(0,0,0,0.1)") 0/32px lightslategray;
 }
 
 .myContainer .header {
@@ -22,14 +29,18 @@ body {
 }
 
 .icon.home {
-    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=home_filled&fill=whitesmoke');
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=account_balance&fill=whitesmoke');
 }
 
 .icon.login {
     background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=login&fill=whitesmoke');
 }
 
-.icon.newAccount {
+.icon.logout {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=logout&fill=whitesmoke');
+}
+
+.icon.account {
     background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=account_circle&fill=whitesmoke');
 }
 
@@ -49,6 +60,10 @@ body {
     background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=check&fill=whitesmoke');
 }
 
+.btn-danger {
+    padding-left: 0;
+    padding-right: 0;
+}
 /* Hide number input arrows */
 
 /* Chrome, Safari, Edge, Opera */
