@@ -10,11 +10,11 @@ function Atm() {
     this.Alert = {
         template: document.getElementById('alertTemplate'),
         delay: 5 * 1000,    // 5 seconds
-        error(view, message) {  // shortcut to show an error alert
-            this.show(view, message, 'alert-danger');
+        error(view, message, delay) {  // shortcut to show an error alert
+            this.show(view, message, 'alert-danger', delay);
         },
-        success(view, message) {  // shortcut to show a success alert 
-            this.show(view, message, 'alert-success');
+        success(view, message, delay) {  // shortcut to show a success alert 
+            this.show(view, message, 'alert-success', delay);
         },  
         /*
             creates alert and sets the timeout
@@ -200,4 +200,3 @@ function Atm() {
     init();
     console.log('ATM Ready.');    
 }
-
