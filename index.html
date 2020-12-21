@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM</title>
+    <!-- Avoid favicon request -->
+    <link rel="icon" href="data:,">
     <!-- CSS Bootstraps-->
     <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
@@ -14,9 +16,6 @@
         href="./css/app.css">
 </head>
 <body>
-    <!-- <header>
-        <h1 class="w-100 bg-light text-center shadow-sm py-2">ATM</h1>
-    </header> -->
     <main class="h-100 d-flex justify-content-center align-items-center">
         <!-- Login container -->
         <div id="loginView" class="myContainer login shadow-lg">
@@ -29,18 +28,15 @@
                 <!-- Login section -->
                 <h5 class="text-center">PIN</h5>                                    
                 <div class="input-group mb-1">
-                    <input id="loginPin" class="form-control text-center" type="number" minlength="4" maxlength="8" required>
-                    <div class="invalid-feedback">
-                        Please enter a valid number betweeen 4 and 8 digits.
-                    </div>
+                    <input id="loginPIN" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" autocomplete="off" required autofocus>
                 </div> 
-                <button id="loginButton" class="btn btn-primary btn-block">
+                <button type="submit" id="loginButton" class="btn btn-primary btn-block">
                     Login
                     <i class="icon login"></i>
                 </button>                                  
                 <hr>
                 <!-- New account button section -->
-                <button id="newAccountButton" class="btn btn-info btn-block">New account</button>
+                <button type="button" id="newAccountButton" class="btn btn-info btn-block">New account</button>
             </form>
         </div>
         <!-- Account menu container -->
@@ -49,22 +45,23 @@
                 <i class="icon account" alt="Account icon"></i>
                 <span class="text">Account menu</span>
             </div>
-            <div class="bg-light p-3 rounded-bottom">            
-                <button id="changePinButton" class="btn btn-secondary btn-block">
+            <div class="bg-light p-3 rounded-bottom main">   
+                <p><strong>Name: </strong><span id="nameAccount"></span></p>         
+                <button type="button" id="changePinButton" class="btn btn-secondary btn-block">
                     Change PIN                    
                 </button>                                  
-                <button id="balanceButton" class="btn btn-secondary btn-block">
+                <button type="button" id="balanceButton" class="btn btn-secondary btn-block">
                     Balance                    
                 </button>                                  
-                <button id="depositButton" class="btn btn-secondary btn-block">
+                <button type="button" id="depositButton" class="btn btn-secondary btn-block">
                     Deposit                    
                 </button>                                  
-                <button id="withdrawButton" class="btn btn-secondary btn-block">
+                <button type="button" id="withdrawButton" class="btn btn-secondary btn-block">
                     Withdraw
                 </button>                                  
                 <hr>
                 <!-- Back to home -->
-                <button id="logoutButton" class="btn btn-info btn-block">
+                <button type="button" id="logoutButton" class="btn btn-info btn-block">
                     Logout
                     <i class="icon logout"></i>
                 </button>            
@@ -78,39 +75,30 @@
             </div>
             <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->            
             <form id="newAccountForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
-                <Label for="pin" >PIN</label>                                                        
+                <Label for="newAccounPIN" >PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="pin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
-                    <div class="invalid-feedback">
-                        Please enter a valid number betweeen 4 and 8 digits.
-                    </div>
+                    <input id="newAccountPIN" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required>
                 </div> 
                 <Label for="name" >Name</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="name" class="form-control" required>
-                    <div class="invalid-feedback">
-                        Please enter a name.
-                    </div>
+                    <input id="name" name="name" class="form-control rounded" required>
                 </div> 
-                <Label for="balance" >Initial balance</label>                                    
+                <Label for="newBalance" >Initial balance</label>                                    
                 <div class="input-group mb-1 mt-n1">
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input id="balance" class="form-control text-right" type="number" placeholder="0.00">
-                    <div class="invalid-feedback">
-                        Please enter a valid number.
-                    </div>
+                    <input id="newBalance" name="balance" class="form-control text-right rounded-right" type="number" placeholder="0.00" step="0.01">
                 </div> 
                 <hr>
                 <div class="form-row">
                     <div class="col-3">
-                        <button class="btn btn-danger btn-block cancel" title="Cancel changes">                    
+                        <button type="button" class="btn btn-danger btn-block cancel" title="Cancel changes">                    
                             <i class="icon cancel"></i>
                         </button>                                                 
                     </div>
                     <div class="col-9 ml-n1">
-                        <button class="btn btn-info btn-block accept" title="Save changes">
+                        <button type="submit" class="btn btn-info btn-block accept" title="Save changes">
                             Save
                             <i class="icon save"></i>
                         </button>                                                 
@@ -136,7 +124,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input id="balance" class="form-control text-right" type="number" placeholder="0.00">
+                    <input id="ammount" name="ammount" class="form-control text-right rounded-right" type="number" placeholder="0.00" step="0.01" required>
                     <div class="invalid-feedback">
                         Please enter a valid number.
                     </div>
@@ -144,12 +132,12 @@
                 <hr>
                 <div class="form-row">
                     <div class="col-3">
-                        <button class="btn btn-danger btn-block cancel" title="Cancel changes">                    
+                        <button type="button" class="btn btn-danger btn-block cancel" title="Cancel changes">                    
                             <i class="icon cancel"></i>
                         </button>                                                 
                     </div>
                     <div class="col-9 ml-n1">
-                        <button class="btn btn-info btn-block accept" title="Save changes">
+                        <button type="submit" class="btn btn-info btn-block accept" title="Save changes">
                             Confirm
                             <i class="icon check"></i>
                         </button>                                                 
@@ -167,7 +155,7 @@
             <form class="bg-light p-3 rounded-bottom" onsubmit="return false;">
                 <Label for="pin" >PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="pin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
+                    <input id="pin" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits.">
                     <div class="invalid-feedback">
                         Please enter a valid number betweeen 4 and 8 digits.
                     </div>
@@ -175,14 +163,14 @@
                 <hr>
                 <Label for="pin" >New PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="newPin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
+                    <input id="newPin" name="newPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits.">
                     <div class="invalid-feedback">
                         Please enter a valid number betweeen 4 and 8 digits.
                     </div>
                 </div> 
                 <Label for="pin" >Confirm new PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="comfirmNewPin" class="form-control text-center" type="number" required minlength="4" maxlength="8">
+                    <input id="comfirmNewPin" name="confirmNewPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits.">
                     <div class="invalid-feedback">
                         Please enter a valid number betweeen 4 and 8 digits.
                     </div>
@@ -190,12 +178,12 @@
                 <hr>
                 <div class="form-row">
                     <div class="col-3">
-                        <button class="btn btn-danger btn-block cancel" title="Cancel changes">                    
+                        <button type="button" class="btn btn-danger btn-block cancel" title="Cancel changes">                    
                             <i class="icon cancel"></i>
                         </button>                                                 
                     </div>
                     <div class="col-9 ml-n1">
-                        <button class="btn btn-info btn-block accept" title="Save changes">
+                        <button type="submit" class="btn btn-info btn-block accept" title="Save changes">
                             Confirm
                             <i class="icon check"></i>
                         </button>                                                 
@@ -206,8 +194,8 @@
     </main>    
     <!-- template for alerts -->
     <template id="alertTemplate">
-        <div id="message" class="alert" role="alert">
-            <!-- alert message -->
+        <div id="message" class="alert shadow-sm text-center" role="alert">
+            <!-- alert message -->            
         </div>
     </template>
     <!-- JS Custom  -->
@@ -218,7 +206,7 @@
         /* Start application once the DOM has been loaded completely to avoid undefined elements */
         //window.addEventListener('DOMContentLoaded', () => {
             // initializes an instance of Atm and prepares UI
-            let atm=    new Atm();
+            var atm = new Atm();
         //});
     </script>
 </body>

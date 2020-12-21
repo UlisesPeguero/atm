@@ -2,7 +2,7 @@
     Control the view container and the buttons associated with it
     +constructor
     @param domId    {string} -> id for the DOM element of the view container
-    @param buttons  {object} -> 
+    @param buttons  {object} -> functions for confirmation buttons(accept, cancel) if the view has them
 */
 function ViewContainer(domId, buttonsView) {
     // constansts
@@ -17,7 +17,6 @@ function ViewContainer(domId, buttonsView) {
         // and the functions to the onclick event
         if(typeof buttons === 'object') {    
             // create and assign buttons
-            console.log(domId, buttons);
             BUTTON_SELECTORS.forEach(name => {
                 this.Button[name] = DOM.querySelector('.' + name); // assign DOM to button, we add '.' to make it a class selector
                 this.Button[name].onclick = buttons[name]; // get the function from buttons
@@ -51,6 +50,20 @@ function ViewContainer(domId, buttonsView) {
     this.setText = (selector, text) => {
         this.get(selector).textContent = text;
     };
+        
+    /*
+        Allows to set a value for elements with name attribute
+        @param  name    {string}        -> Name attribute to search for
+        @param  value   {string|number} -> Value to be assign to the element
+    */
+    this.setValue = (name, value) => { this.get('[name=' + name + ']').value = value; };
+
+    /*
+        Allows to set a value for elements with name attribute
+        @param  name    {string}    -> Name attribute to search for        
+        @return {string}            -> Value from the element found
+    */
+    this.getValue = (name) =>  this.get('[name=' + name + ']').value;
 
     /*
         Allows to get any children DOM of the container
@@ -59,6 +72,43 @@ function ViewContainer(domId, buttonsView) {
     */
     this.get = (selector) => {
         return DOM.querySelector(selector);
+    };
+
+    // Shortcut to get the form from the view
+    this.getForm = (selector = 'form') => {
+        return this.get(selector);
+    };
+
+    // Set all named elements to ""
+    this.clearForm = () => {
+        this.getForm().querySelectorAll('[name]').forEach(element => {
+            element.value = '';
+        });
+    };
+
+    /*
+        Checks the form in the view for validity according to HTML5
+        @return {boolean}   -> Determines if the form has validation issues, true:valid | false:invalid
+    */
+    this.validateForm = () => {
+        let form = this.getForm();
+        if(!form)  {    // null return if there is no Form in the view    
+            return null;
+        }
+        // returns validity according to HTML5
+        return form.checkValidity();
+    };
+
+    /*  
+        Gets all the named values into an object literal
+        @return {object}    -> All named elements values contained int he Form
+    */
+    this.getValues = () => {
+        let values = {};
+        this.getForm().querySelectorAll('[name]').forEach(element => { // search and add to the values object
+            values[element.name] = element.value;
+        });
+        return values;
     };
 
     // intialize buttons
