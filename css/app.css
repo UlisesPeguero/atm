@@ -9,6 +9,10 @@ body {
     background:  url("https://s.svgbox.net/heropatterns.svg?ic=graph-paper&fill=rgba(0,0,0,0.1)") 0/32px lightslategray;
 }
 
+.myContainer {
+    position: relative;
+}
+
 .myContainer .header {
     padding: 5px;    
     min-width: 250px;
@@ -73,6 +77,10 @@ body {
 /* Alert */
 div.alert {
     opacity: 0.9;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
 }
 
 /* Hide number input arrows */
