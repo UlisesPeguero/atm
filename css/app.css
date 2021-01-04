@@ -1,1 +1,105 @@
-/* CSS */
+/* SVG Graphics from https://svgbox.net */
+
+html {
+    height: 100%;   
+}
+
+body {
+    height: 100%;
+    background:  url("https://s.svgbox.net/heropatterns.svg?ic=graph-paper&fill=rgba(0,0,0,0.1)") 0/32px lightslategray;
+}
+
+/* Container */
+
+.myContainer {
+    position: relative;
+}
+
+.myContainer .header {
+    padding: 5px;    
+    min-width: 250px;
+}
+
+.header .text {
+    vertical-align: bottom;
+}
+
+.btn:hover {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.35)!important;
+}
+
+/* Icons */
+
+.icon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn .icon {
+    vertical-align: middle;
+}
+
+.icon.home {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=account_balance&fill=whitesmoke');
+}
+
+.icon.login {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=login&fill=whitesmoke');
+}
+
+.icon.logout {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=logout&fill=whitesmoke');
+}
+
+.icon.account {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=account_circle&fill=whitesmoke');
+}
+
+.icon.cancel {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=do_not_disturb&fill=whitesmoke');
+}
+
+.icon.save {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=save&fill=whitesmoke');
+}
+
+.icon.balance {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=account_balance_wallet&fill=whitesmoke');
+}
+
+.icon.check {
+    background: no-repeat url('https://s.svgbox.net/materialui.svg?ic=check&fill=whitesmoke');
+}
+
+.btn-danger {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Alert */
+div.alert {
+    opacity: 0.9;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    z-index: 101;
+}
+
+/* Hide number input arrows */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* *********************** */

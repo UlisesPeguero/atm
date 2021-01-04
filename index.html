@@ -3,27 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#</title>
+    <title>ATM</title>
+    <!-- Avoid favicon request -->
+    <link rel="icon" href="data:,">
     <!-- CSS Bootstraps-->
     <link rel="stylesheet" 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
         crossorigin="anonymous">
     <!-- CSS Custom -->
     <link rel="stylesheet"
-        href="css/app.css">
+        href="./css/app.css">
 </head>
 <body>
-    
-    <h1>Bootstraps template</h1>
-
-    <!-- JS jQuery & Bootstraps -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" 
-        crossorigin="anonymous"></script>
+    <main class="h-100 d-flex justify-content-center align-items-center">
+        <!-- Login container -->
+        <div id="loginView" class="myContainer login shadow-lg">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon home" alt="Home icon"></i>
+                <span class="text">ATM</span>
+            </div>
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->
+            <form id="loginForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <!-- Login section -->
+                <h5 class="text-center">PIN</h5>                                    
+                <div class="input-group mb-1">
+                    <input id="loginPIN" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" autocomplete="off" required autofocus>
+                </div> 
+                <button type="submit" id="loginButton" class="btn btn-primary btn-block">
+                    Login
+                    <i class="icon login"></i>
+                </button>                                  
+                <hr>
+                <!-- New account button section -->
+                <button type="button" id="newAccountButton" class="btn btn-info btn-block">New account</button>
+            </form>
+        </div>
+        <!-- Account menu container -->
+        <div id="accountView" class="myContainer account shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon account" alt="Account icon"></i>
+                <span class="text">Account menu</span>
+            </div>
+            <div class="bg-light p-3 rounded-bottom main">   
+                <p><strong>Name: </strong><span id="nameAccount"></span></p>         
+                <button type="button" id="changePinButton" class="btn btn-secondary btn-block">
+                    Change PIN                    
+                </button>                                  
+                <button type="button" id="balanceButton" class="btn btn-secondary btn-block">
+                    Balance                    
+                </button>                                  
+                <button type="button" id="depositButton" class="btn btn-secondary btn-block">
+                    Deposit                    
+                </button>                                  
+                <button type="button" id="withdrawButton" class="btn btn-secondary btn-block">
+                    Withdraw
+                </button>                                  
+                <hr>
+                <!-- Back to home -->
+                <button type="button" id="logoutButton" class="btn btn-info btn-block">
+                    Logout
+                    <i class="icon logout"></i>
+                </button>            
+            </div>
+        </div>
+        <!-- New account container -->
+        <div id="newAccountView" class="myContainer newAccount shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon account" alt="Account icon"></i>
+                <span class="text">New account</span>
+            </div>
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->            
+            <form id="newAccountForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <Label for="newAccounPIN" >PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="newAccountPIN" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required autofocus>
+                </div> 
+                <Label for="name" >Name</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="name" name="name" class="form-control rounded" required>
+                </div> 
+                <Label for="newBalance" >Initial balance</label>                                    
+                <div class="input-group mb-1 mt-n1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input id="newBalance" name="balance" class="form-control text-right rounded-right" type="number" placeholder="0.00" step="0.01">
+                </div> 
+                <hr>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-danger btn-block cancel" title="Cancel changes">                    
+                            <i class="icon cancel"></i>
+                        </button>                                                 
+                    </div>
+                    <div class="col-9 ml-n1">
+                        <button type="submit" class="btn btn-info btn-block accept" title="Save changes">
+                            Save
+                            <i class="icon save"></i>
+                        </button>                                                 
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Balance/Withdraw/Deposit  container -->
+        <div id="balanceView" class="myContainer balance shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon balance" alt="Balance icon"></i>
+                <span id="title" class="text">
+                    <!-- Here goes the name of the action title -->
+                    Balance
+                </span>
+            </div>
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->            
+            <form class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <Label for="balance">
+                    Ammount
+                </label>                                    
+                <div class="input-group mb-1 mt-n1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input id="ammount" name="ammount" class="form-control text-right rounded-right" type="number" placeholder="0.00" step="0.01" required autofocus>
+                    <div class="invalid-feedback">
+                        Please enter a valid number.
+                    </div>
+                </div> 
+                <hr>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-danger btn-block cancel" title="Cancel changes">                    
+                            <i class="icon cancel"></i>
+                        </button>                                                 
+                    </div>
+                    <div class="col-9 ml-n1">
+                        <button type="submit" class="btn btn-info btn-block accept" title="Save changes">
+                            Confirm
+                            <i class="icon check"></i>
+                        </button>                                                 
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Change pin container -->
+        <div id="changePinView" class="myContainer changePin shadow-lg" style="display: none">
+            <div class="header w-100 bg-dark text-light rounded-top">
+                <i class="icon account" alt="Change PIN icon"></i>
+                <span class="text">Change PIN</span>
+            </div>
+            <!-- Form:onsubmit = return  false; to avoid the Form to reload the page on button click -->
+            <form class="bg-light p-3 rounded-bottom" onsubmit="return false;">
+                <Label for="pin" >PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="pin" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required autofocus>                    
+                </div>                 
+                <hr>
+                <Label for="pin" >New PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="newPin" name="newPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required>                    
+                </div> 
+                <Label for="pin" >Confirm new PIN</label>                                                        
+                <div class="input-group mb-1 mt-n1">
+                    <input id="comfirmNewPin" name="confirmNewPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required>                    
+                </div> 
+                <hr>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-danger btn-block cancel" title="Cancel changes">                    
+                            <i class="icon cancel"></i>
+                        </button>                                                 
+                    </div>
+                    <div class="col-9 ml-n1">
+                        <button type="submit" class="btn btn-info btn-block accept" title="Save changes">
+                            Confirm
+                            <i class="icon check"></i>
+                        </button>                                                 
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>    
+    <!-- template for alerts -->
+    <template id="alertTemplate">
+        <div id="message" class="alert shadow-sm text-center" role="alert">
+            <!-- alert message -->            
+        </div>
+    </template>
     <!-- JS Custom  -->
-    <script src="js/app.js"></script>
+    <script src="./js/viewContainer.js"></script>
+    <script src="./js/account.js"></script>
+    <script src="./js/atm.js"></script>
+    <script>
+        /* Start application once the DOM has been loaded completely to avoid undefined elements */
+        //window.addEventListener('DOMContentLoaded', () => {
+            // initializes an instance of Atm and prepares UI
+            var atm = new Atm();
+        //});
+    </script>
 </body>
 </html>
