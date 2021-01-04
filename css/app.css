@@ -9,6 +9,8 @@ body {
     background:  url("https://s.svgbox.net/heropatterns.svg?ic=graph-paper&fill=rgba(0,0,0,0.1)") 0/32px lightslategray;
 }
 
+/* Container */
+
 .myContainer {
     position: relative;
 }
@@ -25,6 +27,8 @@ body {
 .btn:hover {
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.35)!important;
 }
+
+/* Icons */
 
 .icon {
     width: 32px;
@@ -81,6 +85,7 @@ div.alert {
     top: -50px;
     left: 0;
     width: 100%;
+    z-index: 101;
 }
 
 /* Hide number input arrows */
