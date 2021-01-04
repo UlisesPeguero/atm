@@ -102,6 +102,12 @@ function Atm() {
             message() {
                 return `${this.code}. The new PIN doesn't match.`;
             }
+        }, 
+        INVALID_PIN: {
+            code: '07',
+            message(label = '') {
+                return `${this.code}. The ${label} PIN is invalid, choose a different one.`; // PIN is totally not used by another account
+            }
         },
         /*  Prepare message to be send
             @param  error   {Object}    -> Takes one of the ERROR objects to determine the message sent
@@ -225,8 +231,10 @@ function Atm() {
         }
         let errorMessage = null;
         let values = View.new.getValues();  // get form values
-        if(isNaN(values.balance)) { // if balance is not a valid number different than blank
-            errorMessage = ERROR.message(ERROR.INVALID_NUMBER, 'Balance'); // sent error message and stop the method                        
+        if(doesPINExist(values.pin)) { // if PIN is already used by another account
+            errorMessage = ERROR.message(ERROR.INVALID_PIN); // sent error message 
+        } else if(isNaN(values.balance)) { // if balance is not a valid number different than blank
+            errorMessage = ERROR.message(ERROR.INVALID_NUMBER, 'Balance');// sent error message and specified input                          
         } else if(parseFloat(values.balance) < 0) { // if balance is < than 0
             errorMessage = ERROR.message(ERROR.NEGATIVE_NUMBER, 'Balance');                         
         }         
@@ -273,8 +281,8 @@ function Atm() {
     }
 
     // Validates values given and attempts to do Deposit and Withdrawal
-    // @param   {function}  -> Account method to execute for the ammount
-    // @return  {boolean}   -> Determines if the operation was executed
+    // @param   operation {function}    -> Account method to execute for the ammount
+    // @return  {boolean}               -> Determines if the operation was executed
     function balanceOperation(operation) {
         // check for validity on the View.balances's {ViewContainer} form
         if(!View.balance.validateForm()) {
@@ -335,9 +343,11 @@ function Atm() {
         console.log(values);
         if(values.pin !== current.account.getPin()) { // validate the current pin before performing a change
             errorMessage = ERROR.message(ERROR.INCORRECT_PIN);
+        } else if(doesPINExist(values.newPin)) { // checks if new PIN is already used by another account
+                errorMessage = ERROR.message(ERROR.INVALID_PIN, 'new'); 
         } else if(values.newPin !== values.confirmNewPin) {// validate the newPin matches the confirmation
             errorMessage = ERROR.message(ERROR.NEWPIN_NOT_MATCH);
-        }
+        } 
         // check for errors to show
         if(errorMessage !== null) {
             // sent error message about not being a number and set invalid
@@ -351,6 +361,16 @@ function Atm() {
         // udpate data
         updateData();
         goBack();
+    }
+
+    /*
+        Searchs and determinates if the pin given already exists in the Account's list
+        @parameter  pin {string}    -> PIN to be searched
+        #return {boolean}           -> Flag to determinate if the value was found
+    */
+    function doesPINExist(pin) {
+        let exist = accounts.find(account => account.getPin() == pin); // find the first account that satisfies account.getPin() == pin
+        return Boolean(exist); // gives a return in strict boolean value
     }
 
     /*
@@ -394,12 +414,6 @@ function Atm() {
         current.view = view;
         current.view.open(); // display requested view
     }
-
-    this.v = () => View;
-
-    this.a = () => accounts;
-
-    this.c = () => current;
 
     init();
     console.log('ATM Ready.');    
