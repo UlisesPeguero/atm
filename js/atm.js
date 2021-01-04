@@ -247,7 +247,6 @@ function Atm() {
         }
         // if balance is blank, the account will have a starting balance of 0
         let account = new Account(values);  
-        console.log(account.getJSON());
         updateData(account);
         // open session
         openAccountSession(account);
