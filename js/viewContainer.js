@@ -30,11 +30,19 @@ function ViewContainer(domId, buttonsView) {
     */
     this.setVisible = (visible = true) => {
         DOM.style.display = visible ? 'block' : 'none';
+        if(visible) {
+            // get input that will be given the focus
+            let input = DOM.querySelector('[autofocus]');
+            if(input) { // if exists                
+                input.focus();  // focus the input
+                input.scrollIntoView(); // scroll the window to the make the input viewed
+            }
+        }
     };
 
     // shortcut for setVisible(true)
     this.open = () => {
-        this.setVisible();
+        this.setVisible();        
     };
 
     // shortcut for setVisible(false)

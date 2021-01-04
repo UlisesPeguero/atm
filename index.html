@@ -77,7 +77,7 @@
             <form id="newAccountForm" class="bg-light p-3 rounded-bottom" onsubmit="return false;">
                 <Label for="newAccounPIN" >PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="newAccountPIN" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required>
+                    <input id="newAccountPIN" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required autofocus>
                 </div> 
                 <Label for="name" >Name</label>                                                        
                 <div class="input-group mb-1 mt-n1">
@@ -124,7 +124,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input id="ammount" name="ammount" class="form-control text-right rounded-right" type="number" placeholder="0.00" step="0.01" required>
+                    <input id="ammount" name="ammount" class="form-control text-right rounded-right" type="number" placeholder="0.00" step="0.01" required autofocus>
                     <div class="invalid-feedback">
                         Please enter a valid number.
                     </div>
@@ -155,25 +155,16 @@
             <form class="bg-light p-3 rounded-bottom" onsubmit="return false;">
                 <Label for="pin" >PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="pin" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits.">
-                    <div class="invalid-feedback">
-                        Please enter a valid number betweeen 4 and 8 digits.
-                    </div>
+                    <input id="pin" name="pin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required autofocus>                    
                 </div>                 
                 <hr>
                 <Label for="pin" >New PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="newPin" name="newPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits.">
-                    <div class="invalid-feedback">
-                        Please enter a valid number betweeen 4 and 8 digits.
-                    </div>
+                    <input id="newPin" name="newPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required>                    
                 </div> 
                 <Label for="pin" >Confirm new PIN</label>                                                        
                 <div class="input-group mb-1 mt-n1">
-                    <input id="comfirmNewPin" name="confirmNewPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits.">
-                    <div class="invalid-feedback">
-                        Please enter a valid number betweeen 4 and 8 digits.
-                    </div>
+                    <input id="comfirmNewPin" name="confirmNewPin" class="form-control text-center rounded" type="password" minlength="4" maxlength="8" pattern="\d{4,8}" title="Enter a valid integer between 4 and 8 digits." required>                    
                 </div> 
                 <hr>
                 <div class="form-row">
